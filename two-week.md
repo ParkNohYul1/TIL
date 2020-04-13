@@ -3718,7 +3718,7 @@ box-group {
 
 </details>
 
-<details id="10day">
+<details open id="10day">
 <summary>10일차 학습</summary>
 
 #### [테이블 스타일링]  
@@ -3979,7 +3979,7 @@ https://developer.mozilla.org/en-US/docs/Learn/Forms/How_to_build_custom_form_co
 
 </details>
 
-<details id="1week">
+<details open id="1week">
   <summary>첫번째 오프라인 강의</summary>
 
   
