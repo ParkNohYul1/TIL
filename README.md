@@ -478,8 +478,6 @@
   // 컬럼 채우기
   column-fill
   ```
-
-
 </details>
 
 ---------------------------------------------------
@@ -488,10 +486,54 @@
   <summary>13일차</summary>
 
   #### [플렉시블 레이아웃 Lecture1]   
+  플로팅 포지셔닝을 배웠고 어느정도 레이아웃 구성이 되겠지만 시대는 데스크탑 시대를 벗어나고 모바일 시대로 들어가면서 21세기 기술을 사용해야 합니다.
+  모던 레이아웃 중 첫번째가 플렉시블 박스입니다.
+  IE를 제외한 모든 인터넷이 제공합니다. 하지만 IE에서는 사용해야할지 말아야할지 고민해야합니다.
+  
+  fiex-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid transparent;
+    box-shadow: 0 0 0 1px #d9d9d9;
+  }
+
+  모든 요소들을 clearfix라는 속성을 안써도 쓴것처럼 배치가 된다.
+  flex-direction 이라는 것이 중요. row - column
+
+  플렉스 내부에 있는 것을 플렉스로 만들 수 있습니다.
+
+  주측에 대한 정렬  
+  justify-content  
+  flex-start, center, flex-end, space-between, space-around  
+  left, center, right, 양쪽부터 간격있게, 양쪽뛰고 간격있게.  
+  flexbox-direction: row-reverse, column-reverse 반대로 정렬  
+  justify-content: flex-start  
 
   #### [플렉시블 레이아웃 Lecture2]  
+  flex-wrap: nowrap; = 계속 늘어납니다.
+  flex-wrap: wrap-reverse = 위 아래 값이 교체가 됩니다.
+
+  교차측 정렬
+  align-content: center;
+
+  가운데 정렬
+  박스를 가운데 넣기 위해 line-height를 줘서 가운데로 줄 수 있지만
+  justify-content: center;
+  align-content: center;
+
+  align-content: baseline; ==> 글자에 마쳐서 정렬을 해준다.
+
 
   #### [플렉시블 레이아웃 Lecture3]  
+  플렉시블 레이아웃 순서 변경 order.
+
+  align-self 자식 아이템에 대한 정렬
+  align-item:nth-child(3) {
+    flex: 2 0 20px;
+    height: 100px;
+    align-self:center;
+    background: #342c40;
+  }
 
 </details>
 
