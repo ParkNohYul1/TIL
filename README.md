@@ -3,7 +3,8 @@
 
 #### 3주차 질문
 - 어제 테이블을 간단하게 만들어 달라고 해서 웹 접근성에 맞게 작성하려고 보니까 div로 되어 있는 테이블이였습니다. 이러한 경우 aria-describedby을 어떤식으로 줘야 하는지 궁금해합니다.
-- 12일차에 나오는 테두리 이미지 속성인 border-image가 지원되는 웹 브라우저가 적은데 이 속성을 많이 사용하는지 궁금합니다.
+- 12일차에 나오는 테두리 이미지 속성인 border-image가 지원되는 웹 브라우저가 적은데 이 속성을 많이 사용하는지 
+-12일차에 멀티컬럼레이아웃이 8, 9버전에서 지원이 안된다고 했는데. 만약 8,9버전도 지원해게 될때는 float로 잡아야하는지
 
 --------------------------------------------------
 
@@ -402,7 +403,9 @@
       보더 이미지를 9개 영역으로 나눌 수 있습니다.
 
     - width
-      요소의 상/우/하/좌 테두리 이미지 너비(width)를 설정합니다. 실제 테두리의 영향을 받지 않고 이미지는 맨위에 배치됩니다. 단위 없는 값을 사용할 경우, 요소의 테두리 너비에 곱하여 오프셋합니다.
+      요소의 상/우/하/좌 테두리 이미지 너비(width)를 설정합니다. 
+      실제 테두리의 영향을 받지 않고 이미지는 맨위에 배치됩니다. 
+      단위 없는 값을 사용할 경우, 요소의 테두리 너비에 곱하여 오프셋합니다.
 
     - outset (테두리와 콘텐츠 사이 안쪽 여백 크기 조정)
       테두리 이미지를 주어진 값 만큼 패딩(안쪽) 영역을 설정합니다.
@@ -419,6 +422,64 @@
 
   #### 멀티 컬럼 레이아웃
   
+  ```
+  **참고
+  .magazine-section:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+
+  float로 하게 되면 디바이스의 width가 바낄때마다 길이를 조절해줘야 합니다.
+  이러한 문제점을 위해 기능이 있는데요. 8버전, 9버전에서는 사용할 수 없습니다.
+
+  실습
+  .magazine-section {
+    margin: 6rem 0;
+    /* column-count: 4; */ 모바일 경우 찌그러지기 땜에 width를 사용.
+    /* column-width: 480px; */
+    columns: 320px auto -- 속경 4 auto
+    동시에 설정 가능 : 320px 4
+
+    column-gap: 2em;
+    column-rule: 1px solid #dcdcdc;
+  }
+
+  컬럼의 제목같은 경우 너무 따로 노는 느낌이 드니까 column-spen: all 을 이용해 병합된 것 같은 효과를 줄 수 있음.
+
+  컬럼 개수 또는 폭 설정
+  column-count
+  column-width
+  columns (속기형 작성법)
+
+  영상 강의에서는 column-count와 column-width 값을 동시 설정하지 말라고 안내했지만,
+  동시 설정 가능합니다. (참고: https://goo.gl/yo1P1s)
+
+  [예시]
+  columns: 12em;       // column-width: 12em; column-count: auto
+  columns: auto 12em;  // column-width: 12em; column-count: auto
+  columns: 2;          // column-width: auto; column-count: 2
+  columns: 2 auto;     // column-width: auto; column-count: 2
+  columns: auto;       // column-width: auto; column-count: auto
+  columns: auto auto;  // column-width: auto; column-count: auto
+  columns: 12 320px;   // column-width: 320px; column-count: 12
+     
+  // 컬럼 간격 또는 구분 선 설정
+  column-gap
+  column-rule
+  column-rule-color
+  column-rule-style
+  column-rule-width
+
+  // 컬럼 병합
+  column-span
+
+  // 컬럼 채우기
+  column-fill
+  ```
+
+
 </details>
 
 ---------------------------------------------------
