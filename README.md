@@ -10,8 +10,8 @@
 | 일차                    | 링크                      |
 | --------------------- | ----------------------- |
 | 16일차                  | <a href="#16day">클릭</a> |
-| <strong>17일차</strong> | <a href="#17day">클릭</a> |
-| 18일차                  | <a href="#18day">클릭</a> |
+| 17일차                  | <a href="#17day">클릭</a> |
+| <strong>18일차</strong> | <a href="#18day">클릭</a> |
 | 19일차                  | <a href="#19day">클릭</a> |
 | 20일차                  | <a href="#20day">클릭</a> |
 
@@ -132,7 +132,7 @@
 
 </details>
 
-<details open id="17day">
+<details id="17day">
   <summary>17일차</summary>
 
   #### 장치 독립적 픽셀 1
@@ -209,8 +209,138 @@
 
 </details>
 
-<details id="18day">
+<details open id="18day">
   <summary>18일차</summary>
+
+#### 중단점과 미디어 쿼리 Lecture1
+
+  [브레이크 포인트]
+  RWD프로젝트 진행전, 주요 사용자 층이 사용하는 디바이스 환경을 분석한 후, 최적화되고 유효한 중단점(Breakpoint)을 설계(Design)를 한다.
+
+  CSS3 미디어 쿼리 => 미디어쿼리는 각 디바이스 환경을 식별하는 조건 처리 구문으로 CSS3에서 정식 지원한다. 이를 사용하여 설계된 중단점에 맞는 최적화된 뷰 디자인을 구현할 수 있다.
+
+  @media {type} and (expression) {...}  
+  @는 사람들은 골뱅이라고 하는데 이것은 앳이라고 합니다.  
+  [type] screen, printer, tv, integration css rule, projector를 넣을 수 있습니다.  
+  [expression] and를 여러번 쓸 수 있습니다.  
+  - 가로/세로 (width/height)
+  - 풀컬러인지, 흑백인지 (color)
+  - 화면비율 (aspect ratio) 
+  - 독립적인 픽셀 단위 (resolution)
+  - 가로형인지 세로형인지 (orientation)
+
+```
+width  : 가로 (min, max)
+height : 세로 (min, max)
+orientation : 회전 방향
+aspect-radio : 회면 비율
+color, color-index, monochrome  : 색깔
+resolution : 독립적인 픽셀 단위 농도
+```
+- 디바이스 가로/세로 폭 길이 감지  
+  /* width */  
+  @media screen and (min-width: 600px) {...}  
+  @media screen and (min-width: 200px) and (max-width: 400px) {...}  
+
+  /* height */  
+  @media screen and (max-height: 768px) {...}  
+  @media (min-height: 500px) and (max-height: 580px) {...}  
+
+- 디바이스 회전 방향 감지
+  /* portrait */ 세로방향
+  @media screen and (orientation: portrait) {...}
+
+  /* landscape */ 가로방향
+  @media screen and (orientation : landscape) {...}
+
+- 디바이스 픽셀 밀도 감지
+  /* 300 DPI */
+  @media print and (min-resolution: 300dpi) {...}
+  
+  /* x2 Device  */
+  @media screen and (min-resolution: 2ddpx)
+
+- 논리 연산자 응용
+  /* AND */ 모든 컬러를 사용하는 환경.
+  @media all and (color) {...}
+
+  /* NOT + AND */ 스크린만 아닌 것.
+  @media not screen and (color) {...}
+
+  /* ONLY + AND */ 
+  @media only screen and (orientation: portrait) {...}
+
+  /* COMMA */ 컴마도 가능
+  @media all and (orientation: landscape),
+         all and (min-width: 480px) {...}
+
+#### 중단점과 미디어 쿼리 Lecture2
+
+모바일 퍼스트 
+현 시대 사용자 대부분이 모바일 환경에서 우선 접속합니다.
+필요에 따라서는 데스크탑 환경이 필요(업무) 할 수 있습니다.
+모바일 환경 디자인(설계)이 우선시 되어야 합니다.
+
+중단점 설계
+
+서비스를 이용하는 주 고객층의 행동 패턴을 분석하여
+모바일, 태블릿, 데스크탑, 와이드 스크린 사용율 통계를 검토한 후,기기의 속성(스크린 폭, 해상도 등)을 고려하여 중단점을 설계해야 합니다.
+
+
+중단점 설계를 위한 참고 자료
+
+  - http://gs.statcounter.com
+  - http://www.w3counter.com/globalstats.php?year=2018&month=3
+  - http://www.internettrend.co.kr/trendForward.tsp
+  - http://viewportsizes.com
+  - http://troy.labs.daum.net
+  - https://material.io/resizer
+
+글로벌 서비스: 중단점 설계 (https://goo.gl/xQZwY6)
+
+1.  360 x  640    23.4%
+2. 1366 x  768   11.82%
+3. 1920 x 1080    7.69%
+
+
+대한민국 서비스: 중단점 설계 (https://goo.gl/dAQZG8)
+  
+ 1. 1920 x 1080    22.90%
+ 2.  360 x  640    20.63%
+ 3.  375 x  667     7.54%
+
+
+  디바이스(기기) 별 해상도
+    
+    [Mobile]
+      Samsung Galaxy S9, S9+        :  360 x 740
+      Samsung Galaxy S8, S8+, Note8 :  360 x 640
+      iPhone 6(s), 7, 8             :  375 x 667
+      iPhone X                      :  375 x 812
+
+    [Tablet]
+      iPad                          :  768 x 1024
+      iPad Pro                      : 1024 x 1366
+    
+    [Desktop]
+      Notebook                      : 1366 x  768
+      Desktop                       : 1920 x 1080
+
+
+  고려해야 할 중단점
+
+    ⇐  (640) / 800  ⟺  (1024) / 1366  ⟺  1920  ⇒
+
+    ※ 중단점은 최소한으로 설정할 필요가 있다.
+      중단점이 많아지게 되면 기획/디자인/개발 
+      과정이 모두 고통스러워지기 때문.
+
+
+  고민해야 할 사용자 행동 패턴
+
+    1920 스크린 해상도를 사용하는 사용자가
+    풀 스크린으로 브라우저를 화면 가득 띄워놓고 사용하는지 확인 필요.
+    그렇지 않다면 1366 기준으로 설계하되, 1920까지 고려하는 방향으로 전략 수립.
 </details>
 
 <details id="19day">

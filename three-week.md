@@ -776,7 +776,7 @@
 ---------------------------------------------------
 
 
-<details id="2week">
+<details open id="2week">
   <summary>두번째 오프라인 강의</summary>
   저번 시간에 어떤 것을 하였는지 말씀해주셨다.
 
@@ -828,10 +828,96 @@ https://nuli.navercorp.com/sharing/blog/post/1132804
 
 그리고 가끔 ul과 li 사이에 div를 넣는 사람이 있는데 이것은 돌아가긴 하지만 올바르지 않는 시멘틱 마크업입니다.
 
+폼태그를 묶을때는 fieldset을 사용해서 묶으면 검색봇이 legend를 보고 검색을 할 수 있습니다.
+
+선택서식, 입력 서식을 나눠서 fieldset을 할수도 있습니다.
+
+그리고 https://tailwindcss.com/ 타일윈드라고 있는데 이것을 사용하면 빠르게 개발을 할 수 있습니다. 그래서 비 전문가들은 빠르게 사용한 것을 간결하다고 표현하고 전공자는 공통적인 부분없이 클래스가 사용되어 이것을 간결하지 않다고 애기합니다. 인식의 차이입니다.
+
+이미지를 넣을 때 스크린 리더가 읽을 수 있도록 alt를 이용해서 작성을 해야하는데 로고이미지라고 쓰게되면 스크린 리더는 로고 이미지 이미지라고 읽기때문에 사진의 의미를 정확히 적어야합니다.
+
+name이란 태그 속성에 name 있는데 이것은 정보를 전송했을 때 name이라는 속성으로 파라미터가 넘어갑니다.
+
+라벨이라는 태그를 넣어서 input태그가 어떤 것인지 설명해줬었는데 이것을 제거해야할 때에는 aria-label을 사용해서 생략 후 스크린 리더가 읽게 할 수 있다.
+
+form 태그에 https://formspree.io/xyyzgpvy 라는 action 속성이 있는데 이 링크는 데이터 전송을 테스트 할수가 있다.
+
+마크업을 할때에는 설계를 먼저하고 개발을 해야됩니다.
+
+그리고 h1과 openwax 에 대해서 설명해주셨다.
+
+이제 웹카페에 있는 헤더 부분을 그대로 복사해옵니다. h1부터 form까지. 
+
+```
+<h1 class="brand resetMargin">
+  <a href="index.html">
+    <img src="./images/rwd-logo.png" alt="Web Cafe">
+  </a>
+</h1>
+<ul class="memberOnly resetList">
+  <li><a href="/">로그인</a></li>
+  <li><span class="divider" aria-hidden="true">ㅣ</span><a href="/">회원가입</a></li>
+  <li><span class="divider" aria-hidden="true">ㅣ</span><a href="/">커뮤니티</a></li>
+</ul>
+<form action="https://formspree.io/xyyzgpvy" method="POST" class="searchForm">
+  <fieldset class="resetBox">
+    <legend>검색</legend>
+    <input type="search" required placeholder="검색어를 입력하세요." name="search" aria-label="검색어">
+    <button type="submit" class="button buttonSearch">검색</button>
+  </fieldset>
+</form>
+```
+공통적인 부분 추가.
+
+```
+/* 공통 Reset */
+.resetMargin {
+  margin: 0;
+}
+.resetList {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+```
+영어같은 경우 line-height : 1을 하게되면 짤리지 않지만 한글인 경우 line-height를 할시 1이 짤립니다.
+
+normalize.css 노멀라이즈 CSS  
+노멀라이즈 CSS 같은 경우 브라우저마다 다르게 보이는 스타일을 하나로 통힐하게 해줍니다.   
+https://webdir.tistory.com/455
+
+번역된 것들을 읽어보고 영어로 봐야겠다. 영어로 된 것을 읽으면서 공부하는 것도 나쁘지 않다고 한다.
+
+노멀라이즈 css 다운 받을 수 있는 사이트 
+
+https://cdnjs.com/libraries/normalize   
+이 사이트로 들어가면 cdn을 다운 받을 수 있다.
+
+cdn을 받고 맨위에 임포트를 해준다.   
+@import url(https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css);
+
+그리고 구글에 spoqa han sans 검색해서 cdn을 다운받는다.  
+일본어를 쓰고 싶다면 일본어까지 넣으면 됩니다.
+@import url(https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css);
+
+옛날에는 신문의 글꼴을 전부다 이미지로 했기 때문에 외국인이 크게 유입되지 않았다. 그러자 신문 업체는 폰트자체를 글꼴로 만들어 웹폰트를 제작하니 많은 외국인 유입이 되었다.
+
+https://webdir.tistory.com/56
+cdn 말고도 @font-faced을 사용해 본트를 받을 수 있다.
+
+@font-face {  
+    font-family: 'Spoqa Han Sans';  
+    font-weight: 700;  
+    src: local('Spoqa Han Sans Bold'),  
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@01ff0283e4f36e159ffbf744b36e16ef742da6d8/Subset/SpoqaHanSans/SpoqaHanSansBold.woff2') format('woff2'),  
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@01ff0283e4f36e159ffbf744b36e16ef742da6d8/Subset/SpoqaHanSans/SpoqaHanSansBold.woff') format('woff'),  
+    url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@01ff0283e4f36e159ffbf744b36e16ef742da6d8/Subset/SpoqaHanSans/SpoqaHanSansBold.ttf') format('truetype');  
+}
+
 
 </details>
 
-<details open id="2week">
+<details id="2week">
   <summary>두번째 오프라인 후기</summary>
   마지막에 시간이 짧아져서 데스크탑에서 모바일로 바끼는 부분에서 설명과 코딩을 같이 강의를 하셨다. 
   
