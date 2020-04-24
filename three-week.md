@@ -848,7 +848,7 @@ form 태그에 https://formspree.io/xyyzgpvy 라는 action 속성이 있는데 �
 
 이제 웹카페에 있는 헤더 부분을 그대로 복사해옵니다. h1부터 form까지. 
 
-```
+```html
 <h1 class="brand resetMargin">
   <a href="index.html">
     <img src="./images/rwd-logo.png" alt="Web Cafe">
@@ -869,7 +869,7 @@ form 태그에 https://formspree.io/xyyzgpvy 라는 action 속성이 있는데 �
 ```
 공통적인 부분 추가.
 
-```
+```css
 /* 공통 Reset */
 .resetMargin {
   margin: 0;
@@ -902,9 +902,11 @@ cdn을 받고 맨위에 임포트를 해준다.
 
 옛날에는 신문의 글꼴을 전부다 이미지로 했기 때문에 외국인이 크게 유입되지 않았다. 그러자 신문 업체는 폰트자체를 글꼴로 만들어 웹폰트를 제작하니 많은 외국인 유입이 되었다.
 
+참고) 나이든 분들은 얇은 글씨가 안보이니 웬만하면 얇은 글자를 사용하지 말라고 했다.
+
 https://webdir.tistory.com/56
 cdn 말고도 @font-faced을 사용해 본트를 받을 수 있다.
-
+```css
 @font-face {  
     font-family: 'Spoqa Han Sans';  
     font-weight: 700;  
@@ -913,6 +915,9 @@ cdn 말고도 @font-faced을 사용해 본트를 받을 수 있다.
     url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@01ff0283e4f36e159ffbf744b36e16ef742da6d8/Subset/SpoqaHanSans/SpoqaHanSansBold.woff') format('woff'),  
     url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@01ff0283e4f36e159ffbf744b36e16ef742da6d8/Subset/SpoqaHanSans/SpoqaHanSansBold.ttf') format('truetype');  
 }
+```
+
+
 
 
 </details>
