@@ -14,9 +14,12 @@
 | 18일차                  | <a href="#18day">클릭</a> |
 | <strong>19일차</strong> | <a href="#19day">클릭</a> |
 | 20일차                  | <a href="#20day">클릭</a> |
-
 ---------------------------------------------------
 
+#### 세번째 오프라인 강의
+| 제목                           | 링크                      |
+| ---------------------------- | ----------------------- |
+| <strong>세번째 오프라인 강의</strong> | <a href="#3week">클릭</a> |
 
 
 <details id="16day">
@@ -460,7 +463,7 @@ button {display: none;}
 
 모든 대화형 UI의 경우 반드시 레이블을 제공하여야 합니다. 레이블 제공을 위해 HTML의 label 요소를 사용하는 것을 권장하며 aria-label, aria-labelledby 등의 ARIA 관련 속성을 사용하여 레이블을 제공할 수도 있습니다.
 
-```
+```html
 <div>
   <div id="user-name">이름</div>
   <input type="text" id="name" aria-labelledby="user-name">
@@ -481,4 +484,257 @@ WAI-ARIA 를 적용하여 접근성을 개선한 사례
 
 <details id="20day">
   <summary>20일차</summary>
+</details>
+
+<details open id="3week">
+  <summary>세번째 오프라인</summary>
+  처음 시작할때 카카오에서 계좌 시스템을 개발하러 가셨을 때를 말씀해주셨다. 카카오 계좌시스템은 div로 되어있고 웹 접근성이 엉망이셨다고 하셨다.
+
+  마크업한 것은 네비게이터 부분이였다. 
+  Ul 요소 안에 li 요소를 넣고 그 부메뉴 부분을 ul요소를 써서 마크업을 했다.  
+
+  ```html
+  <ui>
+    <li>
+      <ul>
+        <li>
+          <a>
+          ......
+  ```
+
+  그리고 웹 접근성을 위해 
+  role="presentation"을 사용해 버튼이 스크린 리더가 인식되지 않게 하였다.
+  그리고 눌렀을 때를 알려주기 위해 aria-haspopup을 사용했다. 왼쪽에 창이 열리기 때문에 aria-expended를 써준다.
+
+  우리나라 사이트 중에서 웹 접근성에 민감하고 잘되어있는 사이트가 대한항공이 있다.
+
+  대한항공은 웹 접근성이 잘 되어있지 않아서 해외로부터 소송을 당해 벌금을 냈다. 그래서 해외 시각장애인 단체를 찾아가 회의를 통해 개선하고 있다.
+
+  네비게이션 부분을 마크업하게 되면 시간을 많이 사용 되기 때문에 네비게이터 부분을 복사해서 가져온다.
+
+  그러면 네비게이터 부분에 버튼과 css 적용 안된 네비게이터가 보인다.
+
+  버튼의 기본 속성 제거
+
+  ```css
+  .buttonNone{
+    border: 0;
+    background: transparent;
+    padding: 0;
+  }
+  ```
+
+  메뉴 버튼은 데스크탑일때 보이면 안된다.
+
+  ```css
+  /* 데스크탑 메인 메뉴 열기 버튼 */
+  .buttonBurger{
+    display: none;
+  }
+  ```
+
+  그리고 버튼의 크기를 마춘 후에 appNavigation의 높이도 없애준다.
+  ```css
+  /* 모바일 내비게이션 */
+  .appNavigation{
+  }
+  .buttonBurger{
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+  }
+  ```
+
+  햄버거 메뉴의 3개의 선들 추가
+  
+  ```css
+  .burgerBar{
+    display: block;
+    width: 100%;
+    height: 20%;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    cursor: pointer;
+  }
+  ```
+
+  햄버거 메뉴의 흰색 선들 위치 지정
+  ```css
+  .positionTop {
+    top: 0;
+  }
+  .positionMiddle {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .positionBottom {
+    top: 100%;
+    transform: translateY(-100%);
+  }
+  ```
+
+  햄버거 메뉴 위치 수정
+  ```css
+  .buttonBurger{
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+  }
+  ```
+
+  버튼을 눌렀을떄 해당 버튼의 클래스에 isAct가 추가 되면서
+
+  nav에 isAct가 추가 됩니다.
+
+  그리고 버튼이 햄버거모양에서 x버튼이 되어야 합니다.
+
+  맨위에 span태그가 45도로 꺽여야하니 rotate(45deg)로 꺾습니다.
+  그리고 각도만 꺾으면 맨위에서 45도로 꺾이니 top을 50%만큼 줍니다.
+
+  중간에 있는 스팬 태그는 위치를 유지한채로 왼쪽으로 이동하기 위해서 top: 50% 를 설정해주고 왼쪽으로 -105%만큼 보냅니다.
+
+  그리고 맨 마지막에 있는 스팬도 가운데로 보내주고 -45deg를 줘서 반대반향으로 돌려줍니다.
+
+  ```css
+  .isAct .positionTop {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  .isAct .positionMiddle {
+    transform: translate(-105%, -50%);
+  }
+  .isAct .positionBottom {
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+  }
+  ```
+
+  menu__list 라는 클래스를 넣어서 배경을 검은 색으로 배경을 넣은뒤에 X 버튼이 보이게 width를 70%을 준다.
+  그리고 화면에 고정 시키기 위해 fixed를 주어서 height를 디바이스 크기에 마쳐서 100vh를 해야한다. 그리고 글자가 딱 붙어 있으면 이상하니 padding값을 설정한다.
+
+  그리고 평소에는 안보이게 하기 위해 transform을 x쪽으로 -105%를 해준다. 버튼을 눌렀을 때는 보여줘야 하므로 transform을 초기화 시켜준다.
+  
+  ```css
+  .menu__list {
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    width: 70%;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 2em 1em;
+    transform: translateX(-105%);
+  }
+  .isAct .menu__list {
+    transform: none;
+  }
+  ```
+
+  그리고 글자들이 붙어 있으니 글자들의 간격을 설정해준다.
+  submenu 같은 경우 동적으로 나오는 것이라 !important를 설정해서 오차를 예방한ㄷ.
+  a 태그는 인라인 태그라서 패딩값이 들어갈 수 있도록 block요소를 준다.
+
+  ```css
+  .menu__item {
+    margin: 0.5em 0;
+  }
+  .menu__link {
+    display: inline-block;
+    padding: 1em;
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+  .menuAct .menu__subMenu{
+    display: block !important;
+  }
+  .menu__subMenu li{
+    margin: 0.5em 1em;
+  }
+  .menu__subMenu a{
+    display: block;
+    padding: 0.5em;
+  }
+  ```
+
+  그 다음에는 li태그를 숨깁니다.
+
+  모바일 작업이 전부 완료 되었으면 그다음은 데스크탑을 작업합니다.
+
+  네비게이터의 색깔을 바까줍니다. 그리고 메뉴들을 가운데로 정렬하고 아이탬들은 float를 사용해서 왼쪽으로 배치 시킵니다.
+  
+  ```css
+  /* 데스크탑 내비게이션 */
+  .appNavigation {
+    background-color: #988574;
+  }
+  .menu__list {
+    width: 1000px;
+    margin: 0 auto;
+    color: #fff;
+  }
+  .menu__item {
+    float: left;
+    margin: 0 30px;
+  }
+  ```
+
+  그리고 메뉴들의 크기와 간격을 설정합니다. 그리고 메뉴에 그림자를 주어서 더 선명하게 만듭니다.
+
+  ```css
+  .appNavigation {
+    background-color: #988574;
+    padding-top: 2em;
+    padding-bottom: 1em;
+  }
+  .menu__list {
+    width: 1000px;
+    margin: 0 auto;
+    color: #fff;
+  }
+  .menu__item {
+    float: left;
+    margin: 0 30px;
+  }
+  .menu__link {
+    font-weight: 700;
+    font-size: 1.6rem;
+    cursor: default;
+    text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+  }
+  .menu__subMenu {
+    padding-left: 1.5em;
+  }
+  .menu__subMenu li {
+    margin: 0.5em 0;
+  }
+  .menu__subMenu a {
+    display: block;
+    padding: 0.5em;
+  }
+  ```
+  
+  그리고 폰텔로에 대해서 설명해주셨다. 폰텔로(fontello)는 아이콘을 선택해서 폰트처럼 사용할 수 있다고 한다. 
+  기존에 있는 파일로 사용하기로 해서 index.css에 있는 소스를 넣어준다. 
+
+  ```css
+
+  ```
+  그 다음에 자바스크립트 파일을 임포트 시켜줍니다.
+  
+  ```javascript
+  <script src="./js/app.js"></script>
+  ```
+
+  
+
+</details>
+
+<details open id="3week">
+  <summary>세번째 오프라인 후기</summary>
+  오프라인 중에서 제일 쉬웠던 수업이였던 것 같다. 직접 해보라고 해서 어떻게 해야할지 몰랐는데 대충 감이 잡히는 것 같다. 야무님 프론트 강의에 반응형 웹디자인이라는 책이랑 오래가는 UX디자인이라는 것을 샀는 데 빠르게 복습하고 읽어야 겠다. 이렇게 따라치면 따라할 순 있을거 같은데 직접해보면 못따라갈 것같은 느낌이 든다.
 </details>
